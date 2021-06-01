@@ -1,0 +1,6 @@
+query($name: String) {
+  User(filter: { name: $name }) {
+    name
+    userId
+  }
+}
