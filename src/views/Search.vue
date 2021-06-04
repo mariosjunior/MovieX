@@ -7,11 +7,11 @@
             <v-col sm="4" md="2" lg="2" class="d-flex justify-center align-start" v-for="movie in data.Movie" :key="movie.movieId">
               <movie-card class="mx-2" :movie="movie"></movie-card>
             </v-col>
-            <p class="mt-4" v-if="!data.Movie.length">Movie is missing</p>
+            <p class="mt-4" v-if="!data.Movie.length">Não encontramos os filmes que você estava procurando. Tente novamente!</p>
           </v-row>
         </div>
-        <div v-if="loading">Loading...</div>
-        <div v-else-if="error">Try again!</div>
+        <div v-if="loading">Carregando...</div>
+        <div v-else-if="error">Ops, tente novamente.</div>
       </template>
     </ApolloQuery>
   </div>

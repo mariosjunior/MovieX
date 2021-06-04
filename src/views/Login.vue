@@ -1,15 +1,20 @@
 <template>
-  <v-main>
-    <v-row class="d-flex flex-column pa-8 align-center justify-center">
-      <h3 class="mb-4">Login</h3>
-      <v-text-field v-model="username" label="Nome de usuário" color="#0000FF" outlined></v-text-field>
-      <v-btn outlined @click="login(username)">Entrar</v-btn>
+  <v-container fluid class="signin-container">
+    <v-row justify="center" class="px-8 mt-4">
+      <v-col style="max-width: 500px">
+        <v-card>
+          <v-row class="d-flex flex-column pa-8 align-center justify-center">
+            <h3 class="mb-4">Login</h3>
+            <v-text-field @keyup.enter="logIn" v-model="username" label="Nome de usuário" color="#0000ff" outlined></v-text-field>
+            <v-btn outlined @click="logIn">Entrar</v-btn>
+          </v-row>
+          <v-row class="d-flex flex-column pa-8 align-center justify-center">
+            <router-link class="black--text" to="/register">Não tem uma conta? Crie uma</router-link>
+          </v-row>
+        </v-card>
+      </v-col>
     </v-row>
-    <v-row class="d-flex flex-column pa-8 align-center justify-center">
-      <router-link to="/register">Não tem uma conta? Crie uma</router-link>
-    </v-row>
-    <div class="apollo">{{user.userId}}</div>
-  </v-main>
+  </v-container>
 </template>
 
 <script>
@@ -17,27 +22,28 @@ export default {
   name: 'Login',
   data(){
     return{
-      username: '',
-      user: ''
+      username: ''
     }
   },
   methods: {
-    async login(username){
-      let response = await this.searchUser(username)
-      if(response.data.User[0]){
-        localStorage.setItem("user_id", response.data.User[0].userId)
-        this.$router.push('/')
-      }
-      else{
-        console.log("Não existe esse usuário")
-      }
-    },
-    async searchUser(username){
-      return await this.$apollo.query({
-        query: require('@/graphql/users/GetUser.gql'),
-        variables: {name: username},
-        fetchPolicy: 'network-only'
-      })
+    logIn() {
+      this.$apollo
+        .query({
+          query: require('@/graphql/users/GetUser.gql'),
+          variables: { name: this.username },
+        })
+        .then(({ data }) => {
+          if (data.User.length > 0) {
+            this.$store.commit('setUser', {
+              isLoggedIn: true,
+              name: data.User[0].name,
+              id: data.User[0].userId,
+            });
+            this.$router.replace('/');
+          } else {
+            console.log("Erro! Não foi encontrado um usuário");
+          }
+        });
     }
   }
 }

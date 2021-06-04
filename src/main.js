@@ -5,16 +5,14 @@ import {
   createProvider
 } from './vue-apollo'
 import vuetify from './plugins/vuetify'
+import store from "./store"
 
 Vue.config.productionTip = false
-
-const id = localStorage.getItem('user_id');
-console.log(id)
-
 
 new Vue({
   apolloProvider: createProvider(),
   vuetify,
+  store,
   router,
   render: h => h(App)
 }).$mount('#app')

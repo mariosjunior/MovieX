@@ -1,5 +1,5 @@
-query($name: String) {
-  User(filter: { name: $name }) {
+query GetUser($name: String!) {
+  User(name: $name) {
     name
     userId
   }

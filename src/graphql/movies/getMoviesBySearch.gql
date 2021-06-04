@@ -1,9 +1,9 @@
-query($title: String!){
-  Movie(filter: {title_contains: $title}){
-    title,
-    poster,
-    imdbRating,
-    year,
+query($title: String!) {
+  Movie(title: $title) {
+    title
+    poster
+    imdbRating
+    year
     runtime
   }
 }

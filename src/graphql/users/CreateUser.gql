@@ -1,4 +1,4 @@
-mutation($name: String) {
+mutation RegisterUser($name: String!) {
   CreateUser(name: $name) {
     name
     userId
