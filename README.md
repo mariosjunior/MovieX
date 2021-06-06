@@ -1,4 +1,4 @@
-# testmovies
+# MovieX
 
 ## Project setup
 ```
