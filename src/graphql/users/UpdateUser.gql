@@ -1,4 +1,4 @@
-mutation($userId: ID!, $name: String) {
+mutation UpdateUser($userId: ID!, $name: String) {
   UpdateUser(userId: $userId, name: $name) {
     name
     userId

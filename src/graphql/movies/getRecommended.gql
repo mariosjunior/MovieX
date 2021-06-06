@@ -1,0 +1,12 @@
+query($first: Int!, $id: ID!) {
+  User(filter: { userId: $id }) {
+    recommendedMovies(first: $first) {
+      title
+      movieId
+      poster
+      imdbRating
+      year
+      runtime
+    }
+  }
+}

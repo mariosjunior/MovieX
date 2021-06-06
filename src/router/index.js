@@ -5,6 +5,7 @@ import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 import Search from '../views/Search.vue'
 import Profile from '../views/Profile.vue'
+import MovieDetails from '../views/MovieDetails.vue';
 import store from '../store'
 
 Vue.use(VueRouter)
@@ -45,6 +46,14 @@ const routes = [{
         path: '/search',
         name: 'Search',
         component: Search,
+        meta: {
+            requiresAuth: true
+        },
+    },
+    {
+        path: '/movie/:id',
+        name: 'MovieDetails',
+        component: MovieDetails,
         meta: {
             requiresAuth: true
         },

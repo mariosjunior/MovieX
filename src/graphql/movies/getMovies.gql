@@ -1,0 +1,7 @@
+query($first: Int!) {
+  Movie(first: $first) {
+    title
+    movieId
+    poster
+  }
+}

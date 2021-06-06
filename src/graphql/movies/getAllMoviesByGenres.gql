@@ -1,12 +1,13 @@
-query($first: Int!){
-  Genre{
-    name,
-    movies(first: $first){
-      title,
-      poster,
-      imdbRating,
-      year,
+query($first: Int!) {
+  Genre {
+    name
+    movies(first: $first) {
+      title
+      poster
+      imdbRating
+      year
       runtime
+      movieId
     }
   }
 }
